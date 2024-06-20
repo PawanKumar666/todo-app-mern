@@ -3,7 +3,6 @@
 This project contains a simple todo - 
 
 Here - 
-- Anyone can create an account
 - Anyone can create a todo
 - Anyone can update the todo
 - Anyone can delete the todo
