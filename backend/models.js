@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("your_mongo_url");
+mongoose.connect(process.env.MONGOOSE_URL);
 
 const TodoModelSchema = mongoose.Schema({
   title: { type: String, required: true },

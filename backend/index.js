@@ -1,3 +1,5 @@
+require("dotenv").config(); // Loads env variables
+
 const express = require("express");
 const todoSchema = require("./types");
 const TodoModel = require("./models");
@@ -57,4 +59,6 @@ function errorHandlerMiddleware(err, req, res, next) {
 }
 app.use(errorHandlerMiddleware);
 
-module.exports = app;
+app.listen(3000, () => {
+  console.log(`Server started on port 3000!`);
+});

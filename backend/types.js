@@ -6,4 +6,4 @@ const todoSchema = zod.object({
   completed: zod.boolean(),
 });
 
-module.exports = { signUpSchema, todoSchema };
+module.exports = { todoSchema };
