@@ -3,10 +3,12 @@ require("dotenv").config(); // Loads env variables
 const express = require("express");
 const { todoSchema } = require("./types");
 const { todoModel } = require("./models");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors()); // Very insecure
 
 app.get("/todos", async (req, res) => {
   const todos = await todoModel.find({});
