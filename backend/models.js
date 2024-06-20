@@ -2,11 +2,15 @@ const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGOOSE_URL);
 
-const TodoModelSchema = mongoose.Schema({
+mongoose.connection.once("open", () => {
+  console.log("Connected to MongoDB");
+});
+
+const todoModelSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: false },
-  completed: { type: Boolean, default: false, required: true },
+  completed: { type: Boolean, default: false },
 });
-const TodoModel = mongoose.model("Todos", TodoModelSchema);
+const todoModel = mongoose.model("todos", todoModelSchema);
 
-module.exports = { TodoModel };
+module.exports = { todoModel };
