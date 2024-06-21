@@ -4,7 +4,7 @@ import {CreateTodo} from "./components/CreateTodo";
 import {Todos} from "./components/Todos";
 
 function App() {
-  const [todos, setTodos] = useState(null);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/todos").then(async (res) => {
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div>
-      <CreateTodo />
+      <CreateTodo setTodos={setTodos}/>
       {todos && <Todos todos={todos} />}
     </div>
   )
