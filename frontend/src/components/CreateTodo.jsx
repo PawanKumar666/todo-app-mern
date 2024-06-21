@@ -18,7 +18,7 @@ function handleAddTodo(title, description, setTodos) {
     fetch("http://localhost:3000/todo", 
     {
         method: "POST", 
-        body: JSON.stringify({title, description}), 
+        body: JSON.stringify({title, description, completed: false}), 
         headers: {"Content-Type": "application/json"}
     })
     .then(async(res) => {
@@ -33,7 +33,7 @@ function handleAddTodo(title, description, setTodos) {
     })
 }
 
-function fetchTodos(setTodos) {
+export function fetchTodos(setTodos) {
     fetch("http://localhost:3000/todos")
     .then(async(res) => {
         const todos = await res.json();

@@ -30,11 +30,14 @@ app.post("/todo", async (req, res) => {
 
 app.post("/todo/:id", async (req, res) => {
   const id = req.params.id;
+  console.log("id", id)
   // Check whether given id is present in table
   const todo = await todoModel.findById({ _id: id });
   if (!todo) return res.status(500).send("Todo not found!");
+  console.log("req.body", req.body)
   const updatedBody = todoSchema.safeParse(req.body);
-  if (!updatedBody.success) return res.status(500).send("Data is invalid");
+  if (!updatedBody.success) return res.status(500).send(updatedBody);
+  console.log("updateBody", updatedBody)
   await todoModel.updateOne(
     { _id: id },
     {
@@ -43,7 +46,7 @@ app.post("/todo/:id", async (req, res) => {
       completed: updatedBody.data.completed,
     }
   );
-  return res.status(200).send("Todo updated successfully!");
+  return res.status(200).send({"message": "Todo updated successfully!"});
 });
 
 app.delete("/todo/:id", async (req, res) => {
